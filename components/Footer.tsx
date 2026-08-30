@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { footerNav } from "@/content/nav";
 import { company } from "@/content/company";
 
@@ -30,9 +31,13 @@ export default function Footer() {
       <div className="container-page py-14">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
-            <span className="font-heading text-xl font-bold tracking-tight text-white">
-              DAXAR ENTERPRISES
-            </span>
+            <Image
+              src="/brand/daxar-logo-white.png"
+              alt="Daxar Enterprises LLC"
+              width={1690}
+              height={438}
+              className="h-8 w-auto"
+            />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               Federal construction and project execution focused on disciplined
               planning, quality, accountability, and reliable delivery.
