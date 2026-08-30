@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --color-ocean: #073b4c;
+  --color-federal: #096b8d;
+  --color-sea: #0a8fb0;
+  --color-silver: #d9e1e5;
+  --color-graphite: #202a30;
+  --color-metallic: #c7a55b;
+}
+
+@theme inline {
+  --color-ocean: var(--color-ocean);
+  --color-federal: var(--color-federal);
+  --color-sea: var(--color-sea);
+  --color-silver: var(--color-silver);
+  --color-graphite: var(--color-graphite);
+  --color-metallic: var(--color-metallic);
+
+  --font-heading: var(--font-manrope);
+  --font-sans: var(--font-inter);
+
+  --container-page: 80rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-graphite);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-sea);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sea);
+  outline-offset: 2px;
+}
+
+.container-page {
+  max-width: var(--container-page);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-page {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
