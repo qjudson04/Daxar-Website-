@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import ProjectCard from "@/components/ProjectCard";
@@ -26,12 +27,28 @@ export default function ProjectsPage() {
 
       <section className="py-16 sm:py-20">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="Project Experience"
-            title="Multi-Trade Renovation & Site Preparation"
-            description="As Daxar completes federal and public-sector construction awards, that project experience will be featured here first."
-          />
-          <div className="mt-10 space-y-10">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+            <SectionHeading
+              eyebrow="Project Experience"
+              title="Multi-Trade Renovation & Site Preparation"
+              description="As Daxar completes federal and public-sector construction awards, that project experience will be featured here first."
+            />
+            <div>
+              <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+                <Image
+                  src="/photos/site-preparation.jpg"
+                  alt="Site preparation coordination at an active earthwork site"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-3 text-xs text-graphite/50">
+                Illustrative photography — not a photo of a Daxar project site.
+              </p>
+            </div>
+          </div>
+          <div className="mt-14 space-y-10">
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}

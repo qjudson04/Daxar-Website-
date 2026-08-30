@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import CapabilityCard from "@/components/CapabilityCard";
@@ -37,6 +38,50 @@ export default function CapabilitiesPage() {
             {capabilityDetails.map((capability) => (
               <CapabilityCard key={capability.title} {...capability} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-silver/25 py-16 sm:py-20">
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div className="order-2 lg:order-1">
+            <SectionHeading
+              eyebrow="General Construction"
+              title="Built for Institutional and Commercial Facilities"
+              description="From renovation to ground-up structural work, Daxar's approach is grounded in the same disciplined project controls regardless of building type or scale."
+            />
+            <p className="mt-4 text-xs text-graphite/50">Illustrative photography.</p>
+          </div>
+          <div className="relative order-1 aspect-[4/3] overflow-hidden border border-silver lg:order-2">
+            <Image
+              src="/photos/highrise-structural.jpg"
+              alt="Institutional building under construction with structural rebar in the foreground"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+            <Image
+              src="/photos/earthwork-excavation.jpg"
+              alt="Site preparation and earthwork at an active excavation site"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <SectionHeading
+              eyebrow="Site Readiness"
+              title="Every Project Starts With the Ground"
+              description="Before a structure takes shape, the site has to be ready for it. Daxar coordinates clearing, grading, excavation, and earthwork so the requirement is set up to succeed from day one."
+            />
+            <p className="mt-4 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

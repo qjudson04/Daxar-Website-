@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import ExecutionStep from "@/components/ExecutionStep";
@@ -36,18 +37,34 @@ export default function FederalConstructionPage() {
         description="Daxar Enterprises delivers construction through disciplined planning, qualified trade partners, strong project controls, and accountable execution. We are structured to support federal renovation, repair, facility improvement, site development, and multi-trade construction requirements nationwide."
         primaryCta={{ label: "Explore Our Capabilities", href: "/capabilities" }}
         size="compact"
+        imageSrc="/photos/rebar-execution.jpg"
+        imageAlt="Construction crew tying rebar reinforcement on an active jobsite at sunset"
       />
 
       <section className="py-16 sm:py-20">
-        <div className="container-page grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
-          <SectionHeading eyebrow="Approach" title="More Than Construction." />
-          <div className="space-y-4 text-base leading-relaxed text-graphite/80">
-            <p>
-              Federal construction requires more than completing the physical scope. Successful
-              execution depends on managing the contract, schedule, subcontractors, quality, safety,
-              documentation, inspections, and closeout as one coordinated effort.
-            </p>
-            <p>Daxar builds project teams and execution plans around those requirements.</p>
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div>
+            <SectionHeading eyebrow="Approach" title="More Than Construction." />
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-graphite/80">
+              <p>
+                Federal construction requires more than completing the physical scope. Successful
+                execution depends on managing the contract, schedule, subcontractors, quality, safety,
+                documentation, inspections, and closeout as one coordinated effort.
+              </p>
+              <p>Daxar builds project teams and execution plans around those requirements.</p>
+            </div>
+          </div>
+          <div>
+            <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+              <Image
+                src="/photos/team-blueprint-review.jpg"
+                alt="Project team reviewing plans beneath a structural steel frame"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

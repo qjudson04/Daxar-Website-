@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import CapabilityCard from "@/components/CapabilityCard";
@@ -26,6 +27,9 @@ export default function HomePage() {
         description="Daxar Enterprises provides construction and project execution solutions for federal and public-sector facilities with a focus on quality, accountability, coordination, and contract performance. We bring together disciplined project management and qualified construction partners to execute requirements from planning and mobilization through construction and closeout."
         primaryCta={{ label: "Explore Our Capabilities", href: "/capabilities" }}
         secondaryCta={{ label: "Contact Daxar", href: "/contact" }}
+        imageSrc="/photos/site-structural-work.jpg"
+        imageAlt="Construction crew working on structural concrete and rebar on a multi-story building"
+        imagePosition="top"
       />
 
       {/* Built Around Execution */}
@@ -61,6 +65,33 @@ export default function HomePage() {
               View Construction Capabilities
               <span aria-hidden="true">→</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Band */}
+      <section className="relative h-[420px] overflow-hidden sm:h-[480px]">
+        <Image
+          src="/photos/rebar-execution.jpg"
+          alt="Construction crew tying rebar reinforcement on an active jobsite at sunset"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-graphite/95 via-graphite/60 to-graphite/10" />
+        <div className="container-page relative flex h-full items-center">
+          <div className="max-w-lg">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-sea">
+              On Site
+            </p>
+            <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl">
+              Execution shows up on site, not just on paper.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-white/80">
+              Every plan Daxar builds is tested against the realities of the jobsite —
+              sequencing, safety, and coordination among every trade on the ground.
+            </p>
+            <p className="mt-6 text-xs text-white/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

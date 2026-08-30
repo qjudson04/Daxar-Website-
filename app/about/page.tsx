@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import ValueCard from "@/components/ValueCard";
@@ -104,12 +105,26 @@ export default function AboutPage() {
 
       {/* Who We Are */}
       <section className="py-16 sm:py-20">
-        <div className="container-page grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <SectionHeading eyebrow="Who We Are" title="A Construction Company Built Around Accountability" />
-          <p className="text-base leading-relaxed text-graphite/80">
-            Daxar Enterprises was established to build a federal construction company known for
-            dependable execution, professional project management, and strong industry partnerships.
-          </p>
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div>
+            <SectionHeading eyebrow="Who We Are" title="A Construction Company Built Around Accountability" />
+            <p className="mt-6 text-base leading-relaxed text-graphite/80">
+              Daxar Enterprises was established to build a federal construction company known for
+              dependable execution, professional project management, and strong industry partnerships.
+            </p>
+          </div>
+          <div>
+            <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+              <Image
+                src="/photos/preconstruction-planning.jpg"
+                alt="Project team reviewing plans beneath a precast concrete structure at sunset"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
+          </div>
         </div>
       </section>
 
@@ -199,20 +214,32 @@ export default function AboutPage() {
 
       {/* Industry Partnerships */}
       <section className="py-16 sm:py-20">
-        <div className="container-page flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-xl">
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div>
             <SectionHeading
               eyebrow="Industry Partnerships"
               title="Industry Partnerships"
               description="Daxar is continuously developing qualified relationships across construction disciplines — from specialty trades and suppliers to large primes and design professionals."
             />
+            <Link
+              href="/industry-partners#register"
+              className="mt-6 inline-flex items-center justify-center rounded bg-ocean px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-federal"
+            >
+              Join Our Industry Partner Network
+            </Link>
           </div>
-          <Link
-            href="/industry-partners#register"
-            className="inline-flex shrink-0 items-center justify-center rounded bg-ocean px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-federal"
-          >
-            Join Our Industry Partner Network
-          </Link>
+          <div>
+            <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+              <Image
+                src="/photos/rooftop-oversight.jpg"
+                alt="Construction team reviewing a multi-story building project at sunset"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
+          </div>
         </div>
       </section>
 

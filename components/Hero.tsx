@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import BlueprintPattern from "@/components/graphics/BlueprintPattern";
 
@@ -14,6 +15,9 @@ type HeroProps = {
   primaryCta?: HeroCta;
   secondaryCta?: HeroCta;
   size?: "large" | "compact";
+  imageSrc?: string;
+  imageAlt?: string;
+  imagePosition?: "center" | "top";
 };
 
 export default function Hero({
@@ -23,12 +27,32 @@ export default function Hero({
   primaryCta,
   secondaryCta,
   size = "large",
+  imageSrc,
+  imageAlt,
+  imagePosition = "center",
 }: HeroProps) {
   return (
     <section className="relative overflow-hidden bg-graphite text-white">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-ocean via-graphite to-graphite" />
-        <BlueprintPattern className="absolute inset-0 h-full w-full" variant="dark" />
+        {imageSrc ? (
+          <>
+            <Image
+              src={imageSrc}
+              alt={imageAlt ?? ""}
+              fill
+              priority
+              sizes="100vw"
+              className={cn("object-cover", imagePosition === "top" && "object-top")}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-graphite via-graphite/85 to-graphite/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-graphite via-transparent to-transparent" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-ocean via-graphite to-graphite" />
+            <BlueprintPattern className="absolute inset-0 h-full w-full" variant="dark" />
+          </>
+        )}
       </div>
 
       <div
@@ -76,6 +100,10 @@ export default function Hero({
                 </Link>
               ) : null}
             </div>
+          ) : null}
+
+          {imageSrc ? (
+            <p className="mt-8 text-xs text-white/50">Illustrative photography.</p>
           ) : null}
         </div>
       </div>

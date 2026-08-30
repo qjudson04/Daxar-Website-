@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import SectionHeading from "@/components/SectionHeading";
 import PartnerRegistrationForm from "@/components/PartnerRegistrationForm";
@@ -25,21 +26,35 @@ export default function IndustryPartnersPage() {
       />
 
       <section className="py-16 sm:py-20">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="Our Approach"
-            title="Strong Projects Start With Strong Teams."
-            description="Daxar develops relationships with qualified partners before opportunities arise, so we can quickly assemble capable, project-specific teams when requirements come in."
-          />
-          <div className="mt-10 flex flex-wrap gap-2.5">
-            {partnerCategories.map((category) => (
-              <span
-                key={category}
-                className="rounded-sm border border-silver bg-white px-3.5 py-2 text-sm font-medium text-graphite/80"
-              >
-                {category}
-              </span>
-            ))}
+        <div className="container-page grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <div>
+            <SectionHeading
+              eyebrow="Our Approach"
+              title="Strong Projects Start With Strong Teams."
+              description="Daxar develops relationships with qualified partners before opportunities arise, so we can quickly assemble capable, project-specific teams when requirements come in."
+            />
+            <div className="mt-8 flex flex-wrap gap-2.5">
+              {partnerCategories.map((category) => (
+                <span
+                  key={category}
+                  className="rounded-sm border border-silver bg-white px-3.5 py-2 text-sm font-medium text-graphite/80"
+                >
+                  {category}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="relative aspect-[4/3] overflow-hidden border border-silver">
+              <Image
+                src="/photos/partnership-handshake.jpg"
+                alt="Overhead view of two construction professionals shaking hands over project plans"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>
