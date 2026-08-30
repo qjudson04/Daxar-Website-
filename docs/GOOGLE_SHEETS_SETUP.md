@@ -46,6 +46,20 @@ source code — everything below goes into environment variables.
 
 Keep this file private. Do not commit it to the repository.
 
+> **"Key creation is blocked by an Organization Policy" error?** Google
+> Workspace/Cloud organizations often enforce the `iam.disableServiceAccountKeyCreation`
+> policy by default, which blocks step 4 above for every project in the org. Fix:
+>
+> 1. As an Organization Policy Administrator, go to
+>    [IAM & Admin → Organization Policies → iam.disableServiceAccountKeyCreation](https://console.cloud.google.com/iam-admin/orgpolicies/iam-disableServiceAccountKeyCreation).
+> 2. In the project picker, select the specific project you created in Step 1
+>    above (not the organization or a folder — scope the exception to just
+>    this project).
+> 3. Click **Manage Policy** → set **Policy source** to **Override parent's
+>    policy** → add a rule with **Enforcement: Off** → **Set Policy**.
+> 4. Return to **Service Accounts → your service account → Keys → Add Key →
+>    Create new key → JSON** and it will succeed.
+
 ## 5. Create the Google Sheet
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new,
