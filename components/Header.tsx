@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { primaryNav } from "@/content/nav";
@@ -28,13 +29,15 @@ export default function Header() {
       )}
     >
       <div className="container-page flex h-20 items-center justify-between gap-6">
-        <Link href="/" className="flex flex-col leading-none shrink-0">
-          <span className="font-heading text-xl font-bold tracking-tight text-ocean sm:text-2xl">
-            DAXAR
-          </span>
-          <span className="mt-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-federal">
-            Enterprises LLC
-          </span>
+        <Link href="/" className="flex shrink-0 items-center">
+          <Image
+            src="/brand/daxar-logo.png"
+            alt="Daxar Enterprises LLC"
+            width={1690}
+            height={438}
+            priority
+            className="h-9 w-auto sm:h-10"
+          />
         </Link>
 
         <nav aria-label="Primary" className="hidden 2xl:flex 2xl:items-center 2xl:gap-1">
