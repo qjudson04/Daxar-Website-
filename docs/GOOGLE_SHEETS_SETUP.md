@@ -27,15 +27,16 @@ environment variables.
 2. Create two tabs (sheet names must match exactly, case-sensitive):
    - `Contact Inquiries`
    - `Industry Partners`
-3. In row 1 of each tab, add header columns matching the order the app writes
-   in. The exact column lists are defined in `lib/sheets.ts`
-   (`CONTACT_SHEET_COLUMNS` and `PARTNER_SHEET_COLUMNS`) — copy them in as your
-   header row so the sheet stays self-documenting. The last several columns on
-   the `Industry Partners` tab (`Daxar Status`, `Qualified`, `Last Contacted`,
-   `Current Opportunity`, `Bid Invited`, `Active Partner`, `Performance Notes`,
-   `Daxar Notes`, `Do Not Use`) are internal-only tracking fields for your team
-   — they are never populated from the public form, only by Daxar staff
-   reviewing submissions.
+3. Leave both tabs empty — **you don't need to type in header columns
+   yourself.** The Apps Script below (step 2) writes the correct header row
+   into a tab automatically the first time it's used, either from the first
+   real form submission or by running the optional `initializeHeaders()`
+   helper once you've deployed it. The last several columns it writes on the
+   `Industry Partners` tab (`Daxar Status`, `Qualified`, `Last Contacted`,
+   `Current Opportunity`, `Bid Invited`, `Active Partner`, `Performance
+   Notes`, `Daxar Notes`, `Do Not Use`) are internal-only tracking fields for
+   your team — they are never populated from the public form, only by Daxar
+   staff reviewing submissions.
 
 ## 2. Add the Apps Script
 
@@ -44,6 +45,11 @@ environment variables.
 2. Delete any placeholder code in `Code.gs` and paste in the full contents of
    [`docs/apps-script/Code.gs`](./apps-script/Code.gs) from this repository.
 3. Click the **Save project** icon (or Ctrl/Cmd+S).
+4. Optional: to see the header rows appear immediately rather than waiting
+   for the first real submission, select `initializeHeaders` from the
+   function dropdown and click **Run** (approve the authorization prompt if
+   asked). It writes headers to both tabs and leaves anything already there
+   untouched — safe to run more than once.
 
 ## 3. Generate a Shared Secret
 
