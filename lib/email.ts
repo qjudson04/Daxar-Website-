@@ -53,7 +53,7 @@ async function sendNotification(params: {
       return false;
     }
 
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: fromAddress,
       to: notificationEmail,
       subject: params.subject,
@@ -63,6 +63,11 @@ async function sendNotification(params: {
         content: attachment.content,
       })),
     });
+
+    if (result.error) {
+      console.error("Resend rejected the email notification:", result.error);
+      return false;
+    }
 
     return true;
   } catch (error) {
