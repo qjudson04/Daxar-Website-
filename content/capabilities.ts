@@ -24,7 +24,7 @@ export const homeCapabilities: Capability[] = [
   {
     title: "Facility Improvements",
     description:
-      "Coordinated upgrades to facility spaces, systems, and finishes on occupied and unoccupied sites.",
+      "Upgrades to facility spaces, systems, and finishes on occupied and unoccupied sites.",
   },
   {
     title: "Site Preparation",
@@ -37,9 +37,9 @@ export const homeCapabilities: Capability[] = [
       "Scope, schedule, cost, quality, and subcontractor coordination managed as a single accountable effort.",
   },
   {
-    title: "Specialty Trade Coordination",
+    title: "Specialty Trades",
     description:
-      "Qualified specialty contractors sourced and coordinated for project-specific trade requirements.",
+      "Multi-trade execution across specialty scopes, delivered to Daxar's quality and schedule standards.",
   },
 ];
 
@@ -72,21 +72,21 @@ export const capabilityDetails: Capability[] = [
     naics: ["238310", "238320", "238330", "238350"],
   },
   {
-    title: "Roofing Coordination",
+    title: "Roofing",
     description:
-      "Roofing scopes coordinated through qualified specialty contractors based on project-specific requirements.",
+      "Roofing installation and repair delivered to project-specific requirements.",
     naics: ["238160"],
-    note: "Daxar coordinates qualified roofing subcontractors for project-specific requirements.",
+    note: "Roofing work is completed by qualified trade partners matched to each project's requirements.",
   },
   {
-    title: "Mechanical & Plumbing Coordination",
+    title: "Mechanical & Plumbing",
     description:
-      "Mechanical, HVAC, and plumbing scopes coordinated through qualified specialty contractors.",
+      "Mechanical, HVAC, and plumbing systems delivered through qualified trade partners.",
     naics: ["238220"],
   },
   {
     title: "Concrete & Structural Support",
-    description: "Poured concrete foundation and structural scope coordination.",
+    description: "Poured concrete foundation and structural work.",
     naics: ["238110"],
   },
 ];
@@ -96,15 +96,15 @@ export const constructionManagementScope: string[] = [
   "Preconstruction planning",
   "Subcontractor sourcing",
   "Trade qualification",
-  "Procurement coordination",
+  "Procurement",
   "Material planning",
   "Scheduling",
   "Project sequencing",
   "Cost tracking",
-  "Subcontractor coordination",
+  "Subcontractor management",
   "Site logistics",
   "Quality",
-  "Safety coordination",
+  "Site safety",
   "Documentation",
   "Customer communication",
   "Inspections",
@@ -142,9 +142,9 @@ export const deliveryStages: DeliveryStage[] = [
       "Scope and specification review, schedule development, and trade planning before mobilization begins.",
   },
   {
-    title: "Project Coordination",
+    title: "Trade Execution",
     description:
-      "Subcontractor sourcing, qualification, and day-to-day coordination across active trades.",
+      "Subcontractor sourcing, qualification, and day-to-day management across active trades.",
   },
   {
     title: "Quality Management",
@@ -182,7 +182,7 @@ export const executionPhases: ExecutionPhase[] = [
       "Scope and specification review",
       "Schedule development",
       "Trade planning",
-      "Material and procurement coordination",
+      "Material and procurement planning",
       "Site logistics",
       "Risk identification",
     ],
@@ -195,7 +195,7 @@ export const executionPhases: ExecutionPhase[] = [
       "Materials and equipment",
       "Project documentation",
       "Site requirements",
-      "Safety coordination",
+      "Safety planning",
       "Initial project controls",
     ],
   },
@@ -203,7 +203,7 @@ export const executionPhases: ExecutionPhase[] = [
     number: "03",
     title: "Execute",
     items: [
-      "Subcontractor coordination",
+      "Subcontractor management",
       "Schedule management",
       "Quality control",
       "Safety oversight",
@@ -246,12 +246,12 @@ export const projectControls: ProjectControl[] = [
   {
     title: "Safety",
     description:
-      "Jobsite safety coordination maintained across all active trades and subcontractor personnel.",
+      "Jobsite safety maintained across all active trades and subcontractor personnel.",
   },
   {
     title: "Subcontractors",
     description:
-      "Qualification, sourcing, and day-to-day coordination of the specialty trades required for each requirement.",
+      "Qualification, sourcing, and day-to-day management of the specialty trades required for each requirement.",
   },
   {
     title: "Documentation",

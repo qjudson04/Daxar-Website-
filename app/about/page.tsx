@@ -19,7 +19,7 @@ const operatingPhilosophyItems = [
   "Scope",
   "Team formation",
   "Schedules",
-  "Trade coordination",
+  "Trade execution",
   "Quality",
   "Communication",
   "Documentation",
@@ -55,7 +55,7 @@ const approachSteps = [
     description: "Assemble qualified subcontractors and partners matched to the specific requirement.",
   },
   {
-    title: "Coordinate the Work",
+    title: "Execute the Work",
     description: "Manage sequencing, logistics, and communication across every active trade.",
   },
   {
@@ -99,7 +99,7 @@ export default function AboutPage() {
       <Hero
         eyebrow="About Daxar"
         title="Built on Discipline. Focused on Execution."
-        description="Daxar Enterprises is a federal construction company focused on delivering reliable, well-managed construction solutions for government and public-sector customers. Our approach combines disciplined project management, construction coordination, qualified industry partnerships, and a strong understanding of how complex requirements must be planned, communicated, documented, and executed."
+        description="Daxar Enterprises is a federal construction company focused on delivering reliable, well-managed construction solutions for government and public-sector customers. Our approach combines disciplined project management, multi-trade execution, qualified industry partnerships, and a strong understanding of how complex requirements must be planned, communicated, documented, and executed."
         size="compact"
       />
 

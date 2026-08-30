@@ -24,7 +24,7 @@ export default function HomePage() {
       <Hero
         eyebrow="Daxar Enterprises LLC"
         title="Federal Construction. Disciplined Execution."
-        description="Daxar Enterprises provides construction and project execution solutions for federal and public-sector facilities with a focus on quality, accountability, coordination, and contract performance. We bring together disciplined project management and qualified construction partners to execute requirements from planning and mobilization through construction and closeout."
+        description="Daxar Enterprises provides construction and project execution solutions for federal and public-sector facilities with a focus on quality, accountability, execution, and contract performance. We bring together disciplined project management and qualified construction partners to execute requirements from planning and mobilization through construction and closeout."
         primaryCta={{ label: "Explore Our Capabilities", href: "/capabilities" }}
         secondaryCta={{ label: "Contact Daxar", href: "/contact" }}
         imageSrc="/photos/site-structural-work.jpg"
@@ -50,7 +50,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Capabilities"
             title="Construction Capabilities"
-            description="Daxar coordinates a broad range of construction, renovation, and site-related capabilities aligned with federal and public-sector requirements."
+            description="Daxar delivers a broad range of construction, renovation, and site-related capabilities aligned with federal and public-sector requirements."
           />
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {homeCapabilities.map((capability) => (
@@ -147,12 +147,12 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Experience"
             title="Relevant Project Experience"
-            description="Daxar brings hands-on experience coordinating multi-trade construction projects — managing subcontractors, schedules, and quality outcomes from start to finish."
+            description="Daxar brings hands-on experience executing multi-trade construction projects — managing subcontractors, schedules, and quality outcomes from start to finish."
           />
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
             <ValueCard
-              title="Multi-Trade Coordination"
-              description="Coordinated up to six subcontractors across trades including roofing, HVAC, drywall, flooring, and finishes on a single project."
+              title="Multi-Trade Execution"
+              description="Executed renovation work across six subcontractor trades including roofing, HVAC, drywall, flooring, and finishes on a single project."
             />
             <ValueCard
               title="Schedule Performance"

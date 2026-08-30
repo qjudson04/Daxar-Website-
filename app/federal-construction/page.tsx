@@ -23,7 +23,7 @@ const federalCapabilities = [
   "Facility Improvements",
   "Site Preparation",
   "Interior Construction",
-  "Specialty Trade Coordination",
+  "Specialty Trades",
   "Construction Management",
 ];
 

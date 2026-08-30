@@ -41,7 +41,7 @@ export const builtAroundExecution: WhyDaxarItem[] = [
   },
   {
     title: "Accountability",
-    description: "A single point of ownership for scope, coordination, and outcomes.",
+    description: "A single point of ownership for scope, execution, and outcomes.",
   },
   {
     title: "Compliance",
@@ -56,7 +56,7 @@ export const homeProjectDelivery: WhyDaxarItem[] = [
   },
   {
     title: "Subcontractor Management",
-    description: "Sourcing, qualification, and coordination of the trades required for each project.",
+    description: "Sourcing, qualification, and management of the trades required for each project.",
   },
   {
     title: "Quality Management",

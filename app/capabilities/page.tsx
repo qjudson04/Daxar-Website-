@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: "Construction Capabilities",
   description:
-    "Daxar Enterprises provides construction, renovation, site development, specialty trade coordination, and project management capabilities supporting federal and public-sector facilities nationwide.",
+    "Daxar Enterprises provides construction, renovation, site development, multi-trade execution, and project management capabilities supporting federal and public-sector facilities nationwide.",
   alternates: { canonical: "/capabilities" },
 };
 
@@ -27,7 +27,7 @@ export default function CapabilitiesPage() {
       <Hero
         eyebrow="Capabilities"
         title="Construction Capabilities Built for Federal Requirements"
-        description="Daxar Enterprises provides construction, renovation, site development, specialty trade coordination, and project management capabilities supporting federal and public-sector facilities nationwide. Our approach combines disciplined planning, qualified industry partners, project controls, quality management, and accountable execution from preconstruction through closeout."
+        description="Daxar Enterprises provides construction, renovation, site development, multi-trade execution, and project management capabilities supporting federal and public-sector facilities nationwide. Our approach combines disciplined planning, qualified industry partners, project controls, quality management, and accountable execution from preconstruction through closeout."
         size="compact"
       />
 
@@ -79,7 +79,7 @@ export default function CapabilitiesPage() {
             <SectionHeading
               eyebrow="Site Readiness"
               title="Every Project Starts With the Ground"
-              description="Before a structure takes shape, the site has to be ready for it. Daxar coordinates clearing, grading, excavation, and earthwork so the requirement is set up to succeed from day one."
+              description="Before a structure takes shape, the site has to be ready for it. Daxar delivers clearing, grading, excavation, and earthwork so the requirement is set up to succeed from day one."
             />
             <p className="mt-4 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
@@ -108,9 +108,9 @@ export default function CapabilitiesPage() {
       <section className="py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Specialty Trade Coordination"
-            title="Specialty Trade Coordination"
-            description="Daxar coordinates qualified specialty contractors based on individual project requirements. Daxar does not represent that it self-performs every trade — project-specific teams are built from qualified partners matched to the scope at hand."
+            eyebrow="Multi-Trade Execution"
+            title="Multi-Trade Execution"
+            description="Daxar executes multi-trade scopes across the disciplines below, drawing on a qualified network of trade partners to deliver each requirement to the same quality and schedule standard."
           />
           <ul className="mt-8 flex flex-wrap gap-2.5">
             {specialtyTrades.map((trade) => (
