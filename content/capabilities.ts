@@ -54,11 +54,13 @@ export const capabilityDetails: Capability[] = [
     title: "Renovation & Modernization",
     description:
       "Interior and exterior construction supporting facility improvement, modernization, functionality, and continued use.",
+    naics: ["236220"],
   },
   {
     title: "Repair & Alteration",
     description:
       "Targeted repair, replacement, modification, and improvement of existing facilities and building systems.",
+    naics: ["236220"],
   },
   {
     title: "Site Preparation & Site Improvements",
@@ -76,7 +78,6 @@ export const capabilityDetails: Capability[] = [
     description:
       "Roofing installation and repair delivered to project-specific requirements.",
     naics: ["238160"],
-    note: "Roofing work is completed by qualified trade partners matched to each project's requirements.",
   },
   {
     title: "Mechanical & Plumbing",
