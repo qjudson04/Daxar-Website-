@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --color-ocean: #073b4c;
-  --color-federal: #096b8d;
-  --color-sea: #0a8fb0;
+  /* Blue ramp anchored on the exact brand-logo blue (#00357a). */
+  --color-ocean: #00357a;
+  --color-federal: #07489d;
+  --color-sea: #0d63d3;
   --color-silver: #d9e1e5;
   --color-graphite: #202a30;
   --color-metallic: #c7a55b;
