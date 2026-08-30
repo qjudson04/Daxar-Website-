@@ -23,7 +23,7 @@ export default function HomePage() {
     <>
       <Hero
         eyebrow="Daxar Enterprises LLC"
-        title="Federal Construction. Disciplined Execution."
+        title="Federal Construction. Executed Right."
         description="Daxar Enterprises provides construction and project execution solutions for federal and public-sector facilities with a focus on quality, accountability, execution, and contract performance. We bring together disciplined project management and qualified construction partners to execute requirements from planning and mobilization through construction and closeout."
         primaryCta={{ label: "Explore Our Capabilities", href: "/capabilities" }}
         secondaryCta={{ label: "Contact Daxar", href: "/contact" }}
