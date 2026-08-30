@@ -12,7 +12,7 @@ import { homeCapabilities, executionPhases } from "@/content/capabilities";
 import { builtAroundExecution, homeProjectDelivery, whyDaxarHome } from "@/content/why-daxar";
 
 export const metadata: Metadata = {
-  title: "Federal Construction Contractor | Disciplined Execution",
+  title: "Federal Construction Contractor | Executed Right",
   description:
     "Daxar Enterprises LLC delivers federal construction and project execution through disciplined planning, quality, accountability, and reliable delivery. CAGE 1AXU9, UEI CHHQZLPNT1F7.",
   alternates: { canonical: "/" },
