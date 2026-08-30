@@ -4,63 +4,23 @@ The Contact form and Industry Partner Registration form on the Daxar Enterprises
 website both write submissions to a private Google Sheet and send an email
 notification to Daxar staff. No submission data ever passes through the browser
 to Google directly — the browser sends the form to our own server (`/api/contact`
-or `/api/partner-registration`), and the server talks to Google Sheets using a
-service account. Visitors never see or interact with Google Sheets.
+or `/api/partner-registration`), and the server posts to a small script running
+inside your Google Sheet. Visitors never see or interact with Google Sheets.
 
-This guide walks through connecting your own Google account and Google Cloud
-project so the integration works in production. No secrets are ever placed in
-source code — everything below goes into environment variables.
+This uses a **Google Apps Script Web App** rather than a GCP service account,
+deliberately: many Google Workspace/Cloud organizations enforce an
+`iam.disableServiceAccountKeyCreation` policy that blocks service account key
+downloads outright, and there's no reason to fight that policy for a simple
+form-to-sheet integration. Apps Script runs under your own Google account's
+permissions — no GCP project, no IAM role, no key file, and nothing for an org
+admin to approve.
+
+No secrets are ever placed in source code — everything below goes into
+environment variables.
 
 ---
 
-## 1. Create a Google Cloud Project
-
-1. Go to [console.cloud.google.com](https://console.cloud.google.com/).
-2. Click the project dropdown at the top of the page, then **New Project**.
-3. Name it something like `daxar-website` and click **Create**.
-4. Once created, make sure the new project is selected in the project dropdown.
-
-## 2. Enable the Google Sheets API
-
-1. In the Cloud Console, go to **APIs & Services → Library**.
-2. Search for **Google Sheets API**.
-3. Click it, then click **Enable**.
-
-## 3. Create a Service Account
-
-1. Go to **APIs & Services → Credentials**.
-2. Click **Create Credentials → Service account**.
-3. Give it a name, e.g. `daxar-website-sheets`.
-4. Click **Create and Continue**, then **Done** (no additional roles are required —
-   access is granted directly on the Sheet in step 6).
-
-## 4. Create a Key (Credentials) for the Service Account
-
-1. On the **Credentials** page, click the service account you just created.
-2. Go to the **Keys** tab.
-3. Click **Add Key → Create new key**.
-4. Choose **JSON** and click **Create**. A JSON file will download automatically.
-5. Open the file. You need two values from it:
-   - `client_email` → this is your `GOOGLE_SERVICE_ACCOUNT_EMAIL`
-   - `private_key` → this is your `GOOGLE_PRIVATE_KEY`
-
-Keep this file private. Do not commit it to the repository.
-
-> **"Key creation is blocked by an Organization Policy" error?** Google
-> Workspace/Cloud organizations often enforce the `iam.disableServiceAccountKeyCreation`
-> policy by default, which blocks step 4 above for every project in the org. Fix:
->
-> 1. As an Organization Policy Administrator, go to
->    [IAM & Admin → Organization Policies → iam.disableServiceAccountKeyCreation](https://console.cloud.google.com/iam-admin/orgpolicies/iam-disableServiceAccountKeyCreation).
-> 2. In the project picker, select the specific project you created in Step 1
->    above (not the organization or a folder — scope the exception to just
->    this project).
-> 3. Click **Manage Policy** → set **Policy source** to **Override parent's
->    policy** → add a rule with **Enforcement: Off** → **Set Policy**.
-> 4. Return to **Service Accounts → your service account → Keys → Add Key →
->    Create new key → JSON** and it will succeed.
-
-## 5. Create the Google Sheet
+## 1. Create the Google Sheet
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new,
    blank spreadsheet (e.g. name it "Daxar Website Submissions").
@@ -77,41 +37,58 @@ Keep this file private. Do not commit it to the repository.
    — they are never populated from the public form, only by Daxar staff
    reviewing submissions.
 
-## 6. Share the Google Sheet with the Service Account
+## 2. Add the Apps Script
 
-1. Click **Share** in the top-right of the spreadsheet.
-2. Paste the service account's `client_email` (from step 4).
-3. Set its permission to **Editor** (it needs to append rows).
-4. Click **Send** (no email is actually sent to a service account — it just
-   grants access).
+1. With the spreadsheet open, go to **Extensions → Apps Script**. This opens
+   the script editor, already bound to this specific spreadsheet.
+2. Delete any placeholder code in `Code.gs` and paste in the full contents of
+   [`docs/apps-script/Code.gs`](./apps-script/Code.gs) from this repository.
+3. Click the **Save project** icon (or Ctrl/Cmd+S).
 
-## 7. Find the Sheet ID
+## 3. Generate a Shared Secret
 
-The Sheet ID is the long string in the spreadsheet's URL:
+This secret is what stops random people on the internet from posting fake
+submissions into your Sheet once the Web App URL exists.
 
-```
-https://docs.google.com/spreadsheets/d/THIS_IS_THE_SHEET_ID/edit
-```
+1. In the Apps Script editor, use the function dropdown (next to the **Run**
+   button, in the toolbar) to select `generateAndStoreSecret`.
+2. Click **Run**. The first time, Google will ask you to authorize the script
+   — this is expected (it's your own script acting on your own Sheet); review
+   and click **Allow**.
+3. Go to **View → Logs** (or **Executions**) to see the generated secret it
+   printed. Copy it — you'll need it in step 5.
 
-Copy that value — it's your `GOOGLE_SHEET_ID`.
+You can re-run this function later to rotate the secret; just remember to
+update the website's environment variable to match.
 
-## 8. Add Environment Variables
+## 4. Deploy as a Web App
+
+1. In the Apps Script editor, click **Deploy → New deployment**.
+2. Click the gear icon next to "Select type" and choose **Web app**.
+3. Configure:
+   - **Execute as:** Me (your account)
+   - **Who has access:** Anyone
+     (this is required so our server can call it — access is still gated by
+     the shared secret from step 3, not by who's calling)
+4. Click **Deploy**. Authorize again if prompted.
+5. Copy the **Web app URL** shown (it ends in `/exec`). This is your
+   `GOOGLE_APPS_SCRIPT_URL`.
+
+If you edit `Code.gs` later, you'll need to create a **new deployment** (or
+use **Manage deployments → Edit → New version**) for the changes to take
+effect — saving alone doesn't update a live deployment.
+
+## 5. Add Environment Variables
 
 Copy `.env.example` to `.env.local` (for local development) and fill in:
 
 ```
-GOOGLE_SERVICE_ACCOUNT_EMAIL=your-service-account@your-project.iam.gserviceaccount.com
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
-GOOGLE_SHEET_ID=your-sheet-id
+GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXX/exec
+GOOGLE_APPS_SCRIPT_SECRET=the-secret-you-copied-in-step-3
 ```
 
-**Important about `GOOGLE_PRIVATE_KEY`:** the JSON key file contains literal
-`\n` characters representing line breaks. Paste the key exactly as it appears
-in the JSON file, in quotes, keeping the `\n` sequences intact. The app
-converts them back into real newlines at runtime (see `lib/sheets.ts`).
-
 If you're deploying on a host with an environment-variable dashboard (Vercel,
-Railway, etc.), paste the same value into that dashboard's environment
+Railway, etc.), paste the same values into that dashboard's environment
 variable settings rather than a `.env` file.
 
 ### Email Notifications (Resend)
@@ -131,19 +108,23 @@ NOTIFICATION_EMAIL=info@daxarenterprises.com
 Resend. `NOTIFICATION_EMAIL` is where new-submission alerts are sent — it
 defaults to `info@daxarenterprises.com` if omitted.
 
-## 9. Testing the Integration
+## 6. Testing the Integration
 
 1. Run the site locally: `npm run dev`.
 2. Go to `/contact` or `/industry-partners#register` and submit a test entry.
 3. Check the corresponding tab in your Google Sheet — a new row should appear
    within a few seconds.
 4. Check the inbox for `NOTIFICATION_EMAIL` — a summary email should arrive.
-5. If the Sheet is not configured (env vars missing), the API route returns a
-   clear error to the visitor rather than falsely reporting success — check
-   your terminal/server logs for `Google Sheets is not configured` or
-   `Failed to append row to Google Sheets` if a submission doesn't appear.
+5. If something's misconfigured, the API route returns a clear error to the
+   visitor rather than falsely reporting success — check your terminal/server
+   logs for `Google Apps Script webhook is not configured`, `Apps Script
+   webhook returned a non-OK status`, or `Apps Script webhook reported
+   failure` to see what's wrong. A "reported failure" with `Unauthorized`
+   means the secret in your env vars doesn't match what's stored in the
+   script (re-run `generateAndStoreSecret` and update both, or double-check
+   for extra whitespace when you copied the value).
 
-## 10. Verifying New Partner Registrations
+## 7. Verifying New Partner Registrations
 
 Daxar staff can simply open the Google Sheet directly to review new
 submissions. A recommended lightweight workflow:
@@ -180,3 +161,14 @@ single running server instance. It resets if the server restarts and does not
 share state across multiple instances. This is sufficient for a single-server
 deployment; if the site is later deployed across multiple serverless
 instances or regions, swap it for a shared store such as Upstash Redis.
+
+## Notes on Apps Script Limits
+
+Apps Script Web Apps have a per-execution quota (well beyond what a small
+business contact form generates) and a soft cap on requests per day on
+consumer/Workspace accounts. If Daxar's submission volume ever grows enough
+to approach that, the integration can be swapped back to a direct Sheets API
+call — either via a service account (once/if the org policy is lifted or a
+personal, non-org GCP project is used) or Workload Identity Federation — by
+replacing the internals of `appendRowToSheet` in `lib/sheets.ts` again. The
+API routes and form UI would not need to change.

@@ -19,8 +19,8 @@ and Resend credentials to persist submissions and send notification emails.
 
 1. Copy `.env.example` to `.env.local`.
 2. Follow **[docs/GOOGLE_SHEETS_SETUP.md](./docs/GOOGLE_SHEETS_SETUP.md)** for
-   full step-by-step instructions on creating a Google Cloud project, service
-   account, and Google Sheet, plus setting up Resend for email notifications.
+   full step-by-step instructions on creating the Google Sheet, deploying the
+   Apps Script Web App, and setting up Resend for email notifications.
 
 Without these variables configured, the forms still validate and run, but
 submissions will fail to persist — the API returns a clear error to the
@@ -71,5 +71,5 @@ npm run lint
 - React 19 + TypeScript
 - Tailwind CSS v4 (design tokens in `app/globals.css`)
 - Zod for server-side form validation
-- `googleapis` for Google Sheets persistence
+- A Google Apps Script Web App (bound to the Sheet) for form persistence — no service account or GCP project required
 - `resend` for transactional email notifications

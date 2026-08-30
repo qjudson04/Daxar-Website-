@@ -1,60 +1,49 @@
-import { google } from "googleapis";
-
-function getCredentials() {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const rawKey = process.env.GOOGLE_PRIVATE_KEY;
-  const sheetId = process.env.GOOGLE_SHEET_ID;
-
-  if (!email || !rawKey || !sheetId) {
-    return null;
-  }
-
-  // .env files can't hold literal newlines; the key is stored with \n escapes.
-  const privateKey = rawKey.replace(/\\n/g, "\n");
-
-  return { email, privateKey, sheetId };
-}
-
-async function getSheetsClient() {
-  const credentials = getCredentials();
-  if (!credentials) return null;
-
-  const auth = new google.auth.JWT({
-    email: credentials.email,
-    key: credentials.privateKey,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  });
-
-  const sheets = google.sheets({ version: "v4", auth });
-  return { sheets, sheetId: credentials.sheetId };
-}
+/**
+ * Persistence is via a Google Apps Script Web App bound directly to the
+ * spreadsheet (see docs/apps-script/Code.gs and docs/GOOGLE_SHEETS_SETUP.md).
+ * This deliberately avoids a GCP service account + downloadable key, since
+ * many Google Workspace/Cloud organizations enforce an
+ * iam.disableServiceAccountKeyCreation policy that blocks that path entirely.
+ * The Apps Script runs under the Sheet owner's own Google account — no GCP
+ * project, IAM role, or key is required.
+ */
 
 /**
- * Appends a row to the given sheet tab. Returns false (without throwing) if
- * Google Sheets credentials are not configured or the API call fails, so
- * callers can fall back gracefully instead of reporting false success.
+ * Appends a row to the given sheet tab via the Apps Script webhook. Returns
+ * false (without throwing) if the webhook is not configured or the call
+ * fails, so callers can fall back gracefully instead of reporting false
+ * success.
  */
 export async function appendRowToSheet(tabName: string, values: (string | number)[]): Promise<boolean> {
+  const url = process.env.GOOGLE_APPS_SCRIPT_URL;
+  const secret = process.env.GOOGLE_APPS_SCRIPT_SECRET;
+
+  if (!url || !secret) {
+    console.error("Google Apps Script webhook is not configured — skipping append.");
+    return false;
+  }
+
   try {
-    const client = await getSheetsClient();
-    if (!client) {
-      console.error("Google Sheets is not configured — skipping append.");
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secret, tab: tabName, values }),
+    });
+
+    if (!response.ok) {
+      console.error("Apps Script webhook returned a non-OK status:", response.status);
       return false;
     }
 
-    await client.sheets.spreadsheets.values.append({
-      spreadsheetId: client.sheetId,
-      range: `${tabName}!A1`,
-      valueInputOption: "USER_ENTERED",
-      insertDataOption: "INSERT_ROWS",
-      requestBody: {
-        values: [values],
-      },
-    });
+    const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+    if (!result?.ok) {
+      console.error("Apps Script webhook reported failure:", result?.error);
+      return false;
+    }
 
     return true;
   } catch (error) {
-    console.error("Failed to append row to Google Sheets:", error);
+    console.error("Failed to reach Google Apps Script webhook:", error);
     return false;
   }
 }
