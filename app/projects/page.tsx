@@ -43,9 +43,6 @@ export default function ProjectsPage() {
                   className="object-cover"
                 />
               </div>
-              <p className="mt-3 text-xs text-graphite/50">
-                Illustrative photography — not a photo of a Daxar project site.
-              </p>
             </div>
           </div>
           <div className="mt-14 space-y-10">

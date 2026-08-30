@@ -36,7 +36,7 @@ export default function Footer() {
               alt="Daxar Enterprises LLC"
               width={1690}
               height={438}
-              className="h-8 w-auto"
+              className="h-11 w-auto"
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               Federal construction and project execution focused on disciplined

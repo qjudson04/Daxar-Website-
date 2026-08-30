@@ -123,7 +123,6 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>
@@ -238,7 +237,6 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

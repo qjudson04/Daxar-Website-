@@ -91,7 +91,6 @@ export default function HomePage() {
               Every plan Daxar builds is tested against the realities of the jobsite —
               sequencing, safety, and coordination among every trade on the ground.
             </p>
-            <p className="mt-6 text-xs text-white/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

@@ -50,7 +50,6 @@ export default function CapabilitiesPage() {
               title="Built for Institutional and Commercial Facilities"
               description="From renovation to ground-up structural work, Daxar's approach is grounded in the same disciplined project controls regardless of building type or scale."
             />
-            <p className="mt-4 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
           <div className="relative order-1 aspect-[4/3] overflow-hidden border border-silver lg:order-2">
             <Image
@@ -81,7 +80,6 @@ export default function CapabilitiesPage() {
               title="Every Project Starts With the Ground"
               description="Before a structure takes shape, the site has to be ready for it. Daxar delivers clearing, grading, excavation, and earthwork so the requirement is set up to succeed from day one."
             />
-            <p className="mt-4 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>

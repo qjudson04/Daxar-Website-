@@ -101,10 +101,6 @@ export default function Hero({
               ) : null}
             </div>
           ) : null}
-
-          {imageSrc ? (
-            <p className="mt-8 text-xs text-white/50">Illustrative photography.</p>
-          ) : null}
         </div>
       </div>
     </section>

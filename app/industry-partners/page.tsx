@@ -54,7 +54,6 @@ export default function IndustryPartnersPage() {
                 className="object-cover"
               />
             </div>
-            <p className="mt-3 text-xs text-graphite/50">Illustrative photography.</p>
           </div>
         </div>
       </section>
