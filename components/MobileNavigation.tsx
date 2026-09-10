@@ -24,7 +24,7 @@ export default function MobileNavigation() {
   }, [open]);
 
   return (
-    <div className="2xl:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         aria-expanded={open}

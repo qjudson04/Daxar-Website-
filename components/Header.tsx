@@ -28,7 +28,7 @@ export default function Header() {
           : "border-transparent bg-white",
       )}
     >
-      <div className="container-page flex h-20 items-center justify-between gap-6">
+      <div className="container-page flex h-20 items-center justify-between gap-2 xl:gap-3 2xl:gap-6">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/brand/daxar-logo.png"
@@ -36,11 +36,11 @@ export default function Header() {
             width={1690}
             height={438}
             priority
-            className="h-12 w-auto sm:h-14"
+            className="h-9 w-auto lg:h-10 2xl:h-14"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden 2xl:flex 2xl:items-center 2xl:gap-1">
+        <nav aria-label="Primary" className="hidden lg:flex lg:items-center lg:gap-0 2xl:gap-1">
           {primaryNav.map((link) => {
             const isActive =
               link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -50,7 +50,7 @@ export default function Header() {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "rounded px-3 py-2 text-sm font-medium transition-colors",
+                  "whitespace-nowrap rounded px-1.5 py-2 text-xs font-medium transition-colors xl:px-2 2xl:px-3 2xl:text-sm",
                   isActive
                     ? "text-ocean"
                     : "text-graphite/80 hover:text-ocean",
@@ -62,10 +62,10 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden shrink-0 2xl:block">
+        <div className="hidden shrink-0 lg:block">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded bg-ocean px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-federal"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded bg-ocean px-2.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-federal 2xl:px-5 2xl:py-2.5 2xl:text-sm"
           >
             Contact Daxar
           </Link>
