@@ -31,6 +31,10 @@ export const footerNav = {
   ] as NavLink[],
   additionalServices: [
     { label: "Advisory Services", href: "/advisory-services" },
+    {
+      label: "Capability Statement (PDF)",
+      href: "/documents/Daxar-Enterprises-Capability-Statement.pdf",
+    },
   ] as NavLink[],
   legal: [{ label: "Privacy Policy", href: "/privacy-policy" }] as NavLink[],
 };

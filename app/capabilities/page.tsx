@@ -28,6 +28,10 @@ export default function CapabilitiesPage() {
         eyebrow="Capabilities"
         title="Construction Capabilities Built for Federal Requirements"
         description="Daxar Enterprises provides construction, renovation, site development, multi-trade execution, and project management capabilities supporting federal and public-sector facilities nationwide. Our approach combines disciplined planning, qualified industry partners, project controls, quality management, and accountable execution from preconstruction through closeout."
+        secondaryCta={{
+          label: "Download Capability Statement (PDF)",
+          href: "/documents/Daxar-Enterprises-Capability-Statement.pdf",
+        }}
         size="compact"
       />
 
