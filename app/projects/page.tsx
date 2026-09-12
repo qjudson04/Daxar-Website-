@@ -31,7 +31,7 @@ export default function ProjectsPage() {
             <SectionHeading
               eyebrow="Project Experience"
               title="Multi-Trade Renovation & Site Preparation"
-              description="As Daxar completes federal and public-sector construction awards, that project experience will be featured here first."
+              description="Daxar's project portfolio will continue to expand as we execute construction requirements across federal and public-sector markets."
             />
             <div>
               <div className="relative aspect-[4/3] overflow-hidden border border-silver">

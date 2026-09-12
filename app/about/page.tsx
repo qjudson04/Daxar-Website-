@@ -39,9 +39,9 @@ const leadershipAreas = [
       "Practical experience managing renovation, site development, subcontractor coordination, material procurement, scheduling, budget control, invoice approval, and multi-trade project execution.",
   },
   {
-    title: "Military Leadership & Project Management",
+    title: "Operational Leadership & Team Management",
     description:
-      "Military leadership experience contributes planning, personnel and resource management, stakeholder coordination, risk management, scheduling, accountability, communication, and execution under constraints.",
+      "Daxar leadership brings experience in personnel and resource management, stakeholder coordination, risk management, scheduling, and accountability — the operational discipline required to execute construction requirements under real-world constraints.",
   },
 ];
 
